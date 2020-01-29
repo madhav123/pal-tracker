@@ -5,13 +5,13 @@ notifications:
 env:
   - RELEASE_TAG="release-$TRAVIS_BUILD_NUMBER"
 if: tag IS blank
-before_install:
-  - chmod +x gradlew
+script:
+  - chmod +x ./gradlew build connectedCheck
 jobs:
   include:
     - stage: build and publish
       language: java
-      jdk: openjdk11
+      jdk: openjdk11s
       addons:
         mariadb: '10.2'
       install: skip

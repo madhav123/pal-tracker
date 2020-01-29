@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 
 set -e
-
+before_install:
+  - chmod +x gradlew
 app_name="${1:-pal-tracker}"
 script_dir="${2:-.}"
 service_name="${3:-tracker-database}"
 service_key="${4:-flyway-migration-key}"
-
 function main() {
 
     echo "Creating service key, if necessary ..."

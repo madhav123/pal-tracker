@@ -11,7 +11,7 @@ jobs:
   include:
     - stage: build and publish
       language: java
-      jdk: openjdk11s
+      jdk: openjdk11
       addons:
         mariadb: '10.2'
       install: skip

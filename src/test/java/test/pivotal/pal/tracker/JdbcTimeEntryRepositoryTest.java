@@ -5,8 +5,9 @@ import com.mysql.cj.jdbc.MysqlDataSource;
 import io.pivotal.pal.tracker.JdbcTimeEntryRepository;
 import io.pivotal.pal.tracker.TimeEntry;
 import io.pivotal.pal.tracker.TimeEntryRepository;
-import org.junit.Before;
-import org.junit.Test;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.sql.Date;
@@ -21,7 +22,7 @@ public class JdbcTimeEntryRepositoryTest {
     private TimeEntryRepository subject;
     private JdbcTemplate jdbcTemplate;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         MysqlDataSource dataSource = new MysqlDataSource();
         dataSource.setUrl(System.getenv("SPRING_DATASOURCE_URL"));

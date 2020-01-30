@@ -20,7 +20,7 @@ function main() {
     db_username=$(echo $credentials | jq -r '.username')
     db_password=$(echo $credentials | jq -r '.password')
     db_port=$(echo $credentials | jq -r '.port')
-
+s
     test -n "$db_host" || exit 1
 
     echo "Opening ssh tunnel to $db_host:$db_port ..."
@@ -28,7 +28,7 @@ function main() {
 
 
     echo "Running migration ..."
-    flyway-*/flyway -url="mysql://81f00928746c4386a2f619ed45777ea1:scsyfhaeog5fbghg@q-n3s3y1.q-g18216.bosh:3306/service_instance_db?reconnect=true&useSSL=false" \
+    flyway-*/flyway -url="jdbc:mysql://81f00928746c4386a2f619ed45777ea1:scsyfhaeog5fbghg@q-n3s3y1.q-g18216.bosh:3306/service_instance_db?reconnect=true&useSSL=false" \
         -locations=filesystem:"$script_dir"/databases/tracker \
         -user="$db_username" \
         -password="$db_password" \

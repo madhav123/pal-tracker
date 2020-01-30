@@ -1,53 +1,59 @@
 package io.pivotal.pal.tracker;
 
-import org.springframework.stereotype.Component;
-
-import java.sql.Time;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
+public class InMemoryTimeEntryRepository implements TimeEntryRepository {
+    private HashMap<Long, TimeEntry> timeEntries = new HashMap<>();
 
-public class InMemoryTimeEntryRepository implements  TimeEntryRepository {
-
-    HashMap<Long, TimeEntry> data = new HashMap<Long, TimeEntry>();
-    long id =0L;
+    private long currentId = 1L;
 
     @Override
     public TimeEntry create(TimeEntry timeEntry) {
-        timeEntry.setId(++id);
-        data.put(timeEntry.getId(),timeEntry);
-        return find(id);
+        Long id = currentId++;
 
+        TimeEntry newTimeEntry = new TimeEntry(
+            id,
+            timeEntry.getProjectId(),
+            timeEntry.getUserId(),
+            timeEntry.getDate(),
+            timeEntry.getHours()
+        );
+
+        timeEntries.put(id, newTimeEntry);
+        return newTimeEntry;
     }
 
     @Override
-    public TimeEntry find(long Id) {
-        return data.get(id);
+    public TimeEntry find(Long id) {
+        return timeEntries.get(id);
     }
 
     @Override
-    public TimeEntry update(long Id, TimeEntry timeEntry) {
-        timeEntry.setId(Id);
-        //if(data.containsValue(timeEntry)) {
-        if(data.get(Id)!=null){
-            data.put(Id, timeEntry);
-            return timeEntry;
-        }
-        return null;
+    public List<TimeEntry> list() {
+        return new ArrayList<>(timeEntries.values());
     }
 
     @Override
-    public TimeEntry delete(long Id) {
-        TimeEntry old = find(Id);
-        data.remove(Id);
-        return old;
+    public TimeEntry update(Long id, TimeEntry timeEntry) {
+        if (find(id) == null) return null;
+
+        TimeEntry updatedEntry = new TimeEntry(
+            id,
+            timeEntry.getProjectId(),
+            timeEntry.getUserId(),
+            timeEntry.getDate(),
+            timeEntry.getHours()
+        );
+
+        timeEntries.replace(id, updatedEntry);
+        return updatedEntry;
     }
 
     @Override
-    public List list() {
-        return new ArrayList(data.values());
+    public void delete(Long id) {
+        timeEntries.remove(id);
     }
 }
+

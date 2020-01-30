@@ -1,10 +1,9 @@
 ---
 applications:
-  - name: pal-tracker2
-    path: build/libs/pal-tracker.jar
-    random-route: true
-    service:
-      - tracker-database
-    env:
-      WELCOME_MESSAGE: Hello from the review environment
-      JBP_CONFIG_OPEN_JDK_JRsE: '{ jre: { version: 11.+ } }'
+- name: pal-tracker2
+  path: build/libs/pal-tracker.jar
+  routes:
+  - route: pal-tracker2-pietro-sampsonite.apps.dev.pcf-aws.com
+  env:
+    WELCOME_MESSAGE: Hello from the review environment
+    JBP_CONFIG_OPEN_JDK_JRE: '{ jre: { version: 11.+ } }'

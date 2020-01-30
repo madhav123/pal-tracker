@@ -12,6 +12,7 @@ buildscript {
     }
 }
 
+
 plugins {
     id "java"
 }
@@ -24,14 +25,15 @@ repositories {
 
 dependencies {
     compile("org.springframework.boot:spring-boot-starter-web:$springBootVersion")
+
     testCompile("org.springframework.boot:spring-boot-starter-test:$springBootVersion")
     testCompile("org.mockito:mockito-core:2.23.4")
 }
 
 bootRun.environment([
-        "WELCOME_MESSAGE": "hello",
+     "WELCOME_MESSAGE": "hello",
 ])
 
 test.environment([
-        "WELCOME_MESSAGE": "Hello from test",
+     "WELCOME_MESSAGE": "Hello from test",
 ])

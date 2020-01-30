@@ -1,10 +1,12 @@
 #!/usr/bin/env bash
 
 set -e
+
 app_name="${1:-pal-tracker2}"
 script_dir="${2:-.}"
 service_name="${3:-tracker-database}"
 service_key="${4:-flyway-migration-key}"
+
 function main() {
 
     echo "Creating service key, if necessary ..."
@@ -51,7 +53,7 @@ function pre_tunnel_exit() {
 trap pre_tunnel_exit EXIT
 
 function close_tunnel_at_exit() {
-    echo "Closing tunnel"
+    echo "Closing the tunnel"
     kill -KILL $cf_ssh_pid
 }
 

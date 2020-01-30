@@ -28,7 +28,7 @@ s
 
 
     echo "Running migration ..."
-    flyway-*/flyway -url="jdbc:mysql://81f00928746c4386a2f619ed45777ea1:scsyfhaeog5fbghg@q-n3s3y1.q-g18216.bosh:3306/service_instance_db?reconnect=true&useSSL=false" \
+    flyway-*/flyway -url="jdbc:mysql://$db_host:$db_port/$db_name?reconnect=true&useSSL=false" \
         -locations=filesystem:"$script_dir"/databases/tracker \
         -user="$db_username" \
         -password="$db_password" \

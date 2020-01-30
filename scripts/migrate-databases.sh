@@ -28,7 +28,7 @@ function main() {
 
 
     echo "Running migration ..."
-    flyway-*/flyway -url="jdbc:mysql://q-n3s3y1.q-g18216.bosh:3306/$db_name?useSSL=false" \
+    flyway-*/flyway -url="jdbc:mysql://q-n3s3y1.q-g18216.bosh:3306/tracker_dev?useSSL=false" \
         -locations=filesystem:"$script_dir"/databases/tracker \
         -user="$db_username" \
         -password="$db_password" \

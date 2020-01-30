@@ -5,8 +5,7 @@ notifications:
 env:
   - RELEASE_TAG="release-$TRAVIS_BUILD_NUMBER"
 if: tag IS blank
-before_install:
-  - chmod +x gradlew
+
 jobs:
   include:
     - stage: build and publish
@@ -45,7 +44,7 @@ jobs:
         - echo "Deploying $RELEASE_TAG to Cloud Foundry"
       before_script:
         - cf login -a $CF_API_URL -u $CF_USERNAME -p $CF_PASSWORD -o $CF_ORG -s $CF_SPACE
-        - scripts/migrate-databases.sh pal-tracker2
+        - scripts/migrate-databases.sh pal-tracker2 .
       deploy:
         provider: cloudfoundry
         api: $CF_API_URL

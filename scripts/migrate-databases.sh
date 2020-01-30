@@ -33,8 +33,8 @@ function main() {
     wait_for_tunnel
 
     echo "Running migration ..."
-jdbc:mysql://q-n3s3y1.q-g18216.bosh:3306/$db_name?useSSL=false" \
-    flyway-*/flyway -url="jdbc:mysql://127.0.0.1:63306/$db_name" \
+
+    flyway-*/flyway -url="jdbc:mysql://q-n3s3y1.q-g18216.bosh:3306/$db_name?useSSL=false" \
         -locations=filesystem:"$script_dir"/databases/tracker \
         -user="$db_username" \
         -password="$db_password" \
